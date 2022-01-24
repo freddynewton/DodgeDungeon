@@ -46,4 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultCapacity: 20
   MaxCapacity: 150
-  BasicBullet: {fileID: 0}
+  BaseBullets:
+  - {fileID: 478771534443556054, guid: 7367088b9dfbba14d8c5cac776ba769f, type: 3}
