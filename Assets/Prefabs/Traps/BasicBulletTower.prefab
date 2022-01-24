@@ -215,4 +215,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletType: {fileID: 478771534443556054, guid: 7367088b9dfbba14d8c5cac776ba769f, type: 3}
-  FireRateMS: 2000
+  FireRateMS: 2300
+  releaseTimer: 2800

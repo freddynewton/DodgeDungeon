@@ -29,6 +29,17 @@ public class BasicBullet : BaseBullet
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            return;
+        }
+
+
         BulletPoolManager.Instance.BasicBulletPool.Release(this);
+
+        if (collision.gameObject.tag == "Player")
+        {
+            PlayerManager.Instance.OnHealthPointsReduced(1);
+        }
     }
 }
