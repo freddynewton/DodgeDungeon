@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f32bf8497dbea544b3a6c64dd02e020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseMovementSpeed: 200
+  BaseMovementSpeed: 400
   BaseHealthPoints: 3
   BaseStaminaPoints: 3

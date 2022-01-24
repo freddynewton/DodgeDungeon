@@ -20,12 +20,15 @@ public class BasicBullet : BaseBullet
     public override void Shoot(Vector3 direction)
     {
         directionVector = direction;
-        _ = shootMovementTask();
     }
 
-    private async UniTaskVoid shootMovementTask()
+    private void Update()
     {
         transform.Translate(directionVector * MovementSpeed * Time.deltaTime);
-        _ = shootMovementTask();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        BulletPoolManager.Instance.BasicBulletPool.Release(this);
     }
 }

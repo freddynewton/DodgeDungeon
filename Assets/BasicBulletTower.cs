@@ -16,10 +16,13 @@ public class BasicBulletTower : MonoBehaviour
 
     private async UniTaskVoid ShootTask()
     {
-        var bullet = BulletPoolManager.Instance.BasicBulletPool.Get();
-        bullet.transform.position = transform.right;
+        if (BulletPoolManager.Instance.BasicBulletPool != null)
+        {
+            var bullet = BulletPoolManager.Instance.BasicBulletPool.Get();
+            bullet.transform.position = transform.TransformPoint(Vector3.right);
 
-        bullet.Shoot(transform.right);
+            bullet.Shoot(gameObject.transform.right);
+        }
 
         await UniTask.Delay(FireRateMS);
 

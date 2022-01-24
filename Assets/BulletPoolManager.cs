@@ -13,57 +13,33 @@ public class BulletPoolManager : Singleton<BulletPoolManager>
 
     [Space]
     [Header("Bullet pools")]
-    [SerializeField] private BasicBullet BasicBullet;
-    public ObjectPool<BasicBullet> BasicBulletPool;
+    [SerializeField] private GameObject BasicBullet;
 
-    public void Start()
+    private ObjectPool<BasicBullet> m_basicBulletPool;
+    public ObjectPool<BasicBullet> BasicBulletPool
     {
-        InitializeBasicBulletPool();
-    }
-
-    private void InitializeBasicBulletPool()
-    {
-        BasicBulletPool = new ObjectPool<BasicBullet>(
-      () =>
-      {
-          // create the BulletObject
-          return Instantiate(BasicBullet, transform);
-      }, bullet =>
-      {
-          bullet.OnGetBullet();
-      }, bullet =>
-      {
-          bullet.OnReleaseBullet();
-      }, bullet =>
-      {
-          Destroy(bullet.gameObject);
-      }, false, DefaultCapacity, MaxCapacity);
-    }
-
-    private static void recursiveCombination(int[] array, int n)
-    {
-        if (n > array.Length) return;
-
-        string printString = string.Empty;
-
-        int index = 0;
-        int _n = 0;
-
-        while (index < array.Length)
+        get
         {
-            if (_n <= n && _n < array.Length & index < array.Length)
+            if (m_basicBulletPool == null)
             {
-                printString += array[index + _n].ToString() + " ";
-                _n++;
-            }
-            else
-            {
-                print(printString);
-                index++;
-                _n = 0;
-            }
-        }
+                m_basicBulletPool = new ObjectPool<BasicBullet>(() =>
+                {
+                    var go = Instantiate(BasicBullet, transform);
+                    var bullet = go.GetComponent<BasicBullet>();
 
-        recursiveCombination(array.Where((val, idx) => idx != 0).ToArray(), n);
+                    return bullet;
+                }, bullet =>
+                {
+                    bullet.OnGetBullet();
+                }, bullet =>
+                {
+                    bullet.OnReleaseBullet();
+                }, bullet =>
+                {
+                    Destroy(bullet.gameObject);
+                }, false, DefaultCapacity, MaxCapacity);
+            }
+            return m_basicBulletPool;
+        }
     }
 }
