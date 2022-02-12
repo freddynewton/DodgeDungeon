@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 3
+  ReleaseBulletTimeMS: 10000
 --- !u!50 &9173021277257831242
 Rigidbody2D:
   serializedVersion: 4
